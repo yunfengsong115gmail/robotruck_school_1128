@@ -1,6 +1,9 @@
 {
     "name": "RoboTruck-Dynamics-Env",
     "image": "robotruck-dynamics-env",
+    "runArgs": [
+        "--gpus", "all"
+    ],
     "workspaceFolder": "/workspace",
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
     "customizations": {

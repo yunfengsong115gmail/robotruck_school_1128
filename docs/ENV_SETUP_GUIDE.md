@@ -71,6 +71,33 @@ WSL 版本： 2.x.x
 
 \---
 
+### 1.4 配置 WSL 资源上限（重要）
+
+WSL 2 默认会动态占用大量内存，加载 ROS Bag 或高频 CSV 时可能撑爆内存导致 Windows 死机。必须限制资源上限。
+
+在 Windows 用户目录创建 `.wslconfig` 文件：
+
+**路径**：`C:\Users\<你的用户名>\.wslconfig`
+
+**内容**：
+
+```ini
+[wsl2]
+memory=16GB
+processors=8
+swap=8GB
+```
+
+| 参数 | 说明 |
+|------|------|
+| `memory` | WSL 最大内存，建议设为物理内存的 1/2 ~ 2/3 |
+| `processors` | 最多使用的 CPU 核心数 |
+| `swap` | 超过内存上限时使用的虚拟内存 |
+
+> 修改后需在 PowerShell（管理员）执行 `wsl --shutdown`，然后重新打开 Ubuntu 生效。
+
+---
+
 ## 第二步：安装 Docker Desktop
 
 Docker 负责创建和管理"容器"——隔离的、可复现的运行环境。
@@ -156,7 +183,46 @@ robotruck\_school\_1128/
       └── data/                #   实车数据存放处
 ```
 
-\---
+### 4.1 创建 .gitignore 文件（重要）
+
+实车数据文件（ROS Bag / CSV / MAT）动辄几个 GB，一旦提交到 Git 会撑爆仓库。必须创建 `.gitignore` 把数据文件排除在版本控制之外。
+
+在项目根目录创建 `.gitignore`：
+
+```bash
+nano .gitignore
+```
+
+粘贴以下内容（`Ctrl+O` 保存，`Ctrl+X` 退出）：
+
+```gitignore
+# 实车数据 — 禁止提交（防止撑爆仓库）
+offline_opt/data/*
+!offline_opt/data/.gitkeep
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# VS Code
+.vscode/
+
+# Docker
+*.tar
+*.tar.gz
+
+# MATLAB
+*.asv
+slprj/
+```
+
+> `!offline_opt/data/.gitkeep` 的作用：保留 `data/` 目录结构不被删除，方便团队 clone 后自动有这个空文件夹。在 `data/` 下创建一个空的 `.gitkeep`：
+>
+> ```bash
+> touch offline_opt/data/.gitkeep
+> ```
+
+---
 
 ## 第五步：编写容器配置文件
 
@@ -224,11 +290,14 @@ nano .devcontainer/devcontainer.json
     "build": {
         "dockerfile": "Dockerfile"
     },
+    "runArgs": [
+        "--gpus", "all"
+    ],
     "workspaceFolder": "/workspace",
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
     "customizations": {
         "vscode": {
-            "extensions": \[
+            "extensions": [
                 "ms-python.python",
                 "ms-vscode.cpptools",
                 "ms-iot.vscode-ros"
@@ -244,13 +313,16 @@ nano .devcontainer/devcontainer.json
 
 **每项解释：**
 
-|配置项|作用|
-|-|-|
-|`build.dockerfile`|告诉 VS Code 用哪个 Dockerfile 构建容器|
-|`workspaceFolder`|容器内的工作目录|
-|`workspaceMount`|将本地项目目录映射到容器内的 `/workspace`|
-|`extensions`|容器内自动安装的 VS Code 插件|
-|`remoteUser`|以 root 身份运行（开发环境，方便装包）|
+| 配置项 | 作用 |
+|--------|------|
+| `build.dockerfile` | 告诉 VS Code 用哪个 Dockerfile 构建容器 |
+| `runArgs` | Docker 运行参数，`--gpus all` 将宿主机显卡直通给容器 |
+| `workspaceFolder` | 容器内的工作目录 |
+| `workspaceMount` | 将本地项目目录映射到容器内的 `/workspace` |
+| `extensions` | 容器内自动安装的 VS Code 插件 |
+| `remoteUser` | 以 root 身份运行（开发环境，方便装包） |
+
+> **GPU 直通前提**：Windows 宿主机需安装 NVIDIA 显卡驱动（无需在 Ubuntu 里装）。WSL 2 原生支持 GPU 调用，`--gpus all` 让 PyTorch 训练时能调用显卡加速。纯 CPU 跑深度学习会非常慢。
 
 \---
 

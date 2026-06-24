@@ -1,3 +1,7 @@
+# 实车数据 — 禁止提交（防止撑爆仓库）
+offline_opt/data/*
+!offline_opt/data/.gitkeep
+
 # Python
 __pycache__/
 *.py[cod]
@@ -27,8 +31,3 @@ Thumbs.db
 slprj/
 *.slxc
 *.slx.autosave
-
-# Large data files (separate storage)
-offline_opt/data/*.bag
-offline_opt/data/*.csv
-offline_opt/data/*.mat
