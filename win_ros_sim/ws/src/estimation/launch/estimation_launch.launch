@@ -1,0 +1,14 @@
+<launch>
+  <!-- 附着系数估计节点 -->
+  <node name="adhesion_est" pkg="estimation" type="adhesion_est.py" output="screen">
+    <param name="work_mode" value="loaded" />
+  </node>
+
+  <!-- 质量与坡度估计节点 -->
+  <node name="mass_slope_est" pkg="estimation" type="mass_slope_est.py" output="screen" />
+
+  <!-- 车辆估计节点(轮胎刚度以及转动惯量等) -->
+  <node name="veh_param_est" pkg="estimation" type="veh_param_est.py" output="screen">
+    <param name="work_mode" value="loaded" />  <!-- "empty"或"loaded" -->
+  </node>
+</launch>

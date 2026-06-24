@@ -1,0 +1,12 @@
+uint8 veh_errLevel
+uint8 vcu_errLevel
+uint8 bms_errLevel
+uint8 tcu_errLevel
+uint8 mcu_errLevel
+uint8 dcdc_errLevel
+uint8 dcac_acm_errLevel
+uint8 dcac_eps_errLevel
+uint8 tms_errLevel
+uint8 vcu_errcode
+uint8 brk_errLevel
+uint8 steer_errLevel

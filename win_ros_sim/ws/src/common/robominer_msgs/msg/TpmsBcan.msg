@@ -1,0 +1,12 @@
+uint8 tpms_ipc_tireLocation #轮胎ID
+uint8 tpms_ipc_axleLocation #车轴位置
+uint16 tpms_ipc_tirePressure #轮胎压力
+float64 tpms_ipc_tireTemperature #轮胎温度
+uint8 tpms_ipc_extTirePressure #扩展胎压使能(预留)
+uint8 tpms_ipc_tireSensorFault #胎压传感器供电故障
+uint8 tpms_ipc_CTITireStatus #轮胎状态
+uint8 tpms_ipc_tireSensorStatus #车轮传感器状态
+float64 tpms_ipc_tireAirLeakageRate #轮胎漏气速率
+uint8 tpms_ipc_tirePressureDetection #轮胎气压报警
+uint8 tpms_ipc_tireTemperatureDetection #轮胎温度报警
+uint8 tpms_ipc_explosionProtectionSt #车轮防爆装置状态

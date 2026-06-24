@@ -1,0 +1,3 @@
+geometry_msgs/Point point
+float64 occupy_value
+float64 obstacle_distance

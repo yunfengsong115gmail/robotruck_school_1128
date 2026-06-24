@@ -1,0 +1,34 @@
+uint32 error
+uint32 error_severity
+uint32 LOCALIZATION_OVERTIME=1000
+uint32 RTK_SERVER_CONNECT_ERR=1001 
+uint32 RTK_SERVER_DATA_ERR=1002
+uint32 RTK_ROVER_UNFIX=1003
+uint32 RTK_ROVER_DATA_ERR=1004 #定位模块判断数据异常，例如连续多帧数据大幅跳动等
+
+uint32 PERCEPTION_OVERTIME=2000
+uint32 PERCEPTION_ERR=2001 
+
+uint32 PLANNING_OVERTIME=3000
+uint32 PLANNING_FAIL=3001 
+
+uint32 CONTROL_OVERTIME=4000
+uint32 CONTROL_ERR=4001 
+
+#guardian模块诊断的错误
+uint32 NET_OVERTIME=5000 #mqtt自发自收，网络延时过大
+uint32 CHANGE_GERA_ERR=5001 #超时未切入目标档位，判断换挡失败
+uint32 LIFT_ERR=5002 #超时未达到预定角度，判断举升失败(包含上升与下降失败)
+uint32 LIFT_UP_WARN=5003 #货箱未下降到位
+uint32 JOYSTICK_OVERTIME=5004 #手柄超时无数据
+uint32 TELE_OVERTIME=5005 #遥控座椅超时无数据
+uint32 TELE_EMRG_BTN=5006 #遥控座椅急停按下
+uint32 TELE_EMRG_ALL_BTN=5007 #遥控座椅全部急停按下
+uint32 LATERAL_DEVIATION=5008 #横向偏差过大
+
+uint32 CHASSIS_OVERTIME=6000
+uint32 CHASSIS_ERR=6001 #底盘报的故障
+uint32 STRI=6002 #转向介入
+uint32 BRKI=6003 #刹车介入
+uint32 EMRG_BTN=6004 #车端急停按钮按下
+

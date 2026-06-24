@@ -1,0 +1,8 @@
+uint8 status
+
+uint8 CONNECT_SERVER_ERR=0
+uint8 REQUESR_ERR=1
+uint8 READ_RTK_TIMEOUT=2
+uint8 READ_RTK_ERR=3
+uint8 READ_RTK_SUCC=4
+

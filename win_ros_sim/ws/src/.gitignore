@@ -1,0 +1,9 @@
+*.py[cod~]
+*.cpp~
+*.txt~
+*.launch~
+*.srv~
+*.xml~
+*.swp
+*.tar
+.vscode

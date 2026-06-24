@@ -1,0 +1,13 @@
+# 由规划模块提供
+
+string path_filename #主干道轨迹文件的完整路径与文件名
+
+# 目标点东北天坐标
+float64 goal_x #目标点坐标. ENU
+float64 goal_y
+float64 goal_z
+float64 goal_yaw  #ENU, degrees
+
+robominer_msgs/TaskType task_type
+---
+robominer_msgs/PlanSrvResult result

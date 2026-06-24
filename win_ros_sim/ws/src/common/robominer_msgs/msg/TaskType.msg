@@ -1,0 +1,11 @@
+uint32 type
+# 正常任务，没有特殊要求的赋值该类型，慎用
+uint32 NORMAL=0
+# 装料任务
+uint32 LOAD=1
+# 卸料任务
+uint32 DUMP=2
+# 停车任务
+uint32 PARKING=3
+# 换电任务
+uint32 BATTERY_SWAP=4

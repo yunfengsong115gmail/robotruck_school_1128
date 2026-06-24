@@ -1,0 +1,55 @@
+<launch>
+
+ <env name="ROSCONSOLE_FORMAT" value="[${time}] [${node} (${line})]: ${message}" />
+ 
+ <arg name="origin_lat" default="31.18720771199999" />
+ <arg name="origin_lon" default="121.6043292659999" />
+ <arg name="origin_height" default="0.0" />
+
+ <arg name="full_weight" default="90000.0"/> <!-- 满载质量kg -->
+ <arg name="empty_weight" default="60000.0"/> <!-- 空载质量kg -->
+ <arg name="min_turing_radius" default="10.0"/>
+ <arg name="max_deceleration" default="5.5"/> <!-- 最大制动减速度 m/s^2 -->
+ <arg name="steering_limit" default="35.0"/>
+ <arg name="steering_limit_minus" default="-35.0"/>
+ <arg name="wheel_offset" default="0.0"/>
+ <arg name="lift_limit" default="45.0"/> <!-- 最大举升角度 -->
+ <arg name="wheel_base" default="5.0"/> <!-- 前后轮轴距 -->
+ <arg name="wheel_dist" default="0.0"/> <!-- 后轮轮距，针对前轮转角以左前轮计算的情况 -->
+ <arg name="wheel_radius" default="0.7"/> <!-- 车轮半径 -->
+ <arg name="vehicle_width" default="3.5"/>
+ <arg name="vehicle_front_dist" default="5.0"/>
+ <arg name="vehicle_back_dist" default="3.0"/>
+ <arg name="still_thresh" default="0.2"/> <!-- 速度小于此值认为车辆静止 -->
+ <arg name="world_frame_id" default="world"/>
+ <arg name="base_frame_id" default="base_link"/>
+
+ <arg name="record_dist_thresh" default="1.0" />
+ <arg name="costmap_topic" default="semantics/costmap_generator/occupancy_grid" />
+
+ <arg name="local_plan_timeout" default="1.0"/> <!-- 规划模块超过该时间未发出局部轨迹，则判为超时 -->
+ <arg name="throttle_step" default="10.0"/> <!-- 控制模块给油的步进值 -->
+ <arg name="speed_mode" default="false"/>
+
+
+  <node name="mock_truck" pkg="mock_truck" type="mock_truck.py"  output="screen" cwd="node">
+    <param name="world_frame_id" value="$(arg world_frame_id)"/>
+    <param name="base_frame_id" value="$(arg base_frame_id)"/>
+    <param name="wheel_base" value="$(arg wheel_base)"/>
+    <param name="steering_limit" value="$(arg steering_limit)"/>
+    <param name="lift_limit" value="$(arg lift_limit)"/>
+    <param name="speed_limit" value="10.0"/>
+    <param name="origin_latitude" value="$(arg origin_lat)"/>
+    <param name="origin_longitude" value="$(arg origin_lon)"/>
+    <param name="origin_altitude" value="$(arg origin_height)"/>
+    <param name="start_x" value="0.0"/>
+    <param name="start_y" value="0.0"/>
+    <param name="start_yaw" value="0.0"/>
+  </node>
+
+
+
+ <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mock_truck)/rviz/simu.rviz" />
+
+
+</launch>

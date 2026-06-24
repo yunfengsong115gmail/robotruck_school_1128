@@ -1,0 +1,6 @@
+std_msgs/Header header
+
+float64 lift_angle
+float64 tan_lift_angle
+float64 real_lift_angle
+float64 tan_lift_angle_filter

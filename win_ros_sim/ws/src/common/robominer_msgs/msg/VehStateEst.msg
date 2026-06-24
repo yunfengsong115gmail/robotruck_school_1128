@@ -1,0 +1,6 @@
+std_msgs/Header header
+
+float64 vehicle_mass
+float64 lateral_stiffness_cf
+float64 lateral_stiffness_cr
+float64 road_slope

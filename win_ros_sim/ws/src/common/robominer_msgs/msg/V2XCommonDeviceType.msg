@@ -1,0 +1,10 @@
+uint8 type
+
+uint8 TRUCK=1
+uint8 DIGGER=2
+uint8 BULLDOZER=4
+uint8 SPRINKLER_CAR=7
+uint8 ROLLER=8
+uint8 COMMAND_CAR=9
+uint8 LOADER=10
+uint8 OTHER_CAR=12

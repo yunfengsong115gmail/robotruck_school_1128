@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>estimation</name>
+  <version>0.0.0</version>
+  <description>The parameters estimation package</description>
+
+  <maintainer email="7120724@sjtu.edu.cn">Yingkui_SHI</maintainer>
+  <license>SJTU</license>
+
+  <!-- 构建依赖 -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>message_filters</build_depend>
+  <build_depend>robominer_msgs</build_depend>
+  <build_depend>python3-numpy</build_depend>
+  <build_depend>python3-scipy</build_depend>
+  <build_export_depend>robominer_msgs</build_export_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  
+  <!-- 执行依赖 -->
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>message_filters</exec_depend>
+  <exec_depend>robominer_msgs</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-scipy</exec_depend>
+
+  <export>
+    <build_type>catkin</build_type>
+  </export>
+</package>
